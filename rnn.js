@@ -47,6 +47,7 @@ class rnn{
   generateText(x,tp, func){
     x = x.toLowerCase()
     x = x.split(' ')
+    tp = tp || 10
     let r = new XMLHttpRequest()
     r.open('GET', "wordvecs1000.json")
     let U  = this.U
