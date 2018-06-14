@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script type="text/javascript" src="rnn.js"></script>
+    <script type="text/javascript" src="aarn.js"></script>
+    <title>RNN Text generation</title>
+  </head>
+  <body>
+    <center>
+      <span>type anything and generate text</span><br>
+      <input placeholder="type text" id="htm"> <input id="num" placeholder="Number of text"><br>
+      <button type="button" name="button" id="pr">Predict</button><br>
+      <span id="output"></span>
+    </center>
+    <script type="text/javascript">
+    let nn = new rnn(300, 221, 300, 3, 0.09984232)
+    let htm = document.querySelector('#htm')
+    let output = document.querySelector('#output')
+    let no = document.querySelector('#num')
+    let pr = document.querySelector('#pr')
+    pr.onclick = function(){
+      nn.generateText(htm.value, parseInt(no.value), function(data){
+        console.log(data)
+        let word = ''
+        for(let i=0; i<data.length; i++){
+          word = word + data[i][0].word + ' '
+        }
+        output.innerText = word
+      })
+      htm.value = ''
+      no.value = ''
+    }
+
+
+
+    </script>
+  </body>
+</html>
